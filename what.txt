@@ -465,6 +465,7 @@ YLowpass is soft and smooth to nasty, edgy texture-varying filtering.[coll=Recom
 YNotLowpass is soft and smooth to nasty, edgy texture-varying filtering, no control smoothing.[coll=]
 YNotch is soft and smooth to nasty, edgy texture-varying filtering.[coll=Recommended,Latest]
 YNotNotch is soft and smooth to nasty, edgy texture-varying filtering, no control smoothing.[coll=]
+ZAcidLowpass is like if an e6400 went insane and grew shark teeth.[coll=Latest]
 ZBandpass is a bandpass made to sound and act like the Emu e6400 Ultra bandpass.[coll=]
 ZBandpass2 acts more like the Emu e6400 Ultra bandpass in motion, with control smoothing.[coll=Basic,Recommended,Latest]
 ZHighpass is a highpass made to sound and act like the Emu e6400 Ultra highpass.[coll=]
