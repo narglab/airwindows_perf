@@ -29,7 +29,7 @@ Dynamics: Dynamics2, Pressure6, BeziComp, Pop3, Pop2, Pressure5, StoneFireComp, 
 
 Effects: TakeCare, RingModulator, Dubly3, Dubly2, GalacticVibe, CloudCoat, Disintegrate, Fracture2, Dubly, Pafnuty2, PitchNasty, Trianglizer, ShortBuss, GuitarConditioner, Aura, TremoSquare, Tremolo, GlitchShifter, Gringer, Exciter, Energy2, Energy, Facet, Fracture, PowerSag2, PowerSag, Preponderant, Nikola
 
-Filter: SmoothEQ3, PearEQ, SmoothEQ2, SmoothEQ, Parametric, Silken, Stonefire, AngleEQ, AngleFilter, Isolator3, BezEQ, Baxandall2, Pear2, Capacitor2, Distance3, Pear, ResEQ2, SubTight, CStrip2, Weight, Isolator2, Kalman, PrimeFIR, Holt2, Holt, ToneSlant, AverMatrix, Average, MackEQ, Hull2, Baxandall, Hull, EQ, Capacitor, Isolator, TapeFat, ResEQ, Lowpass2, Highpass2, Distance, Distance2, Lowpass, Highpass
+Filter: SmoothEQ3, PearEQ, FatEQ, SmoothEQ2, SmoothEQ, Parametric, Silken, Stonefire, AngleEQ, AngleFilter, Isolator3, BezEQ, Baxandall2, Pear2, Capacitor2, Distance3, Pear, ResEQ2, SubTight, CStrip2, Weight, Isolator2, Kalman, PrimeFIR, Holt2, Holt, ToneSlant, AverMatrix, Average, MackEQ, Hull2, Baxandall, Hull, EQ, Capacitor, Isolator, TapeFat, ResEQ, Lowpass2, Highpass2, Distance, Distance2, Lowpass, Highpass
 
 Lo-Fi: DeBez, HipCrush, Flutter2, DeRez3, Pockey2, CrunchyGrooveWear, GrooveWear, Pockey, Flutter, DeRez2, BitGlitter, DeRez, TapeBias, ChromeOxide, Cojones, Vibrato, Bite, Deckwrecka, DustBunny
 
@@ -2510,6 +2510,22 @@ But, they change ‘angle’ at a sharp point which becomes sort of a corner in 
 And down near zero, it’s damn near total hard clipping. At silence, it literally is a hard clip to silence.
 
 Aw hell. Play with it, see what you think. i can’t explain this one well, at least not right now. The mad scientist labs have released another weird one. It will act like it’s a hard clip or a semi-dirty saturation, except the range of adjustment acts different, and it’ll throw an odd artifact on pure low-frequency tones… just play with it, see what you get. It will find its way into the combined plugin because it’s got a flavor all its own, but I can’t describe it today.
+
+############ FatEQ balances bands only with density.
+
+This experiment has always worked, but I'm not sure people understand why they gravitate to it.
+
+Usually when we do an EQ, we take frequency bands and turn them up and down, uniformly. A normal sound will get louder, a loud one louder still. Or, a sound will get quieter, a quieter sound quieter still.
+
+FatEQ uses the functions I use in Density (including an upgrade to negative Density settings) so that, if you're boosting, a normal sound will get louder, but a loud one will softclip. If you're cutting, to a certain extent a normal sound will get quieter but a quieter sound will get LOTS quieter. It uses variations on sin() functions to mess with the transfer functions in these ways that are tied to what you're doing with the slider.
+
+It's easy to hear what this does by just turning all the bands up. It's super-dense, overdriven, a multiband distortion, and you can totally do that.
+
+But as you do it, notice: doesn't everything also seem closer? That's the heart of FatEQ, more than its ability to just crank and overdrive stuff.
+
+The way these controls work, if you're making small adjustments you're not just making loudness changes. The softclips and antisaturations have the effect of moving sounds toward you, or farther away. Cutting any control to zero will totally remove that band, but smaller adjustments lean heavily into the 'we're attenuating the quiet detail/we're overdriving the loudest stuff'. As a result, you can EQ spatially: if you have unpleasant low-mids muddying things up, your adjustment can not only turn them down but make them step physically back. You can dial it in based on the sound coming into focus at a desired distance. Top-end too forward? Small adjustments to sit it at the position of the rest of the sound. Lows receding? Well, bring them right out until they're part of the instrument the way you wanted.
+
+It's a little unusual, but every time I've done anything like this, including just making EQ-like things that had saturation in 'em, people have loved the result. So, FatEQ just directly delivers what you might like in an EQ. See if it works out for you!
 
 ############ FathomFive is a way of supplementing extreme bass that’s not just EQ.
 
