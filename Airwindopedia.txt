@@ -29,7 +29,7 @@ Dynamics: Dynamics2, Pressure6, BeziComp, Pop3, Pop2, Pressure5, StoneFireComp, 
 
 Effects: TakeCare, RingModulator, Dubly3, Dubly2, GalacticVibe, CloudCoat, Disintegrate, Fracture2, Dubly, Pafnuty2, PitchNasty, Trianglizer, ShortBuss, GuitarConditioner, Aura, TremoSquare, Tremolo, GlitchShifter, Gringer, Exciter, Energy2, Energy, Facet, Fracture, PowerSag2, PowerSag, Preponderant, Nikola
 
-Filter: SmoothEQ3, PearEQ, FatEQ, SmoothEQ2, BezEQ2, SmoothEQ, Parametric, Donut, Silken, Stonefire, AngleEQ, AngleFilter, Isolator3, BezEQ, Baxandall2, Pear2, Capacitor2, Distance3, Pear, ResEQ2, SubTight, CStrip2, Weight, Isolator2, Kalman, PrimeFIR, Holt2, Holt, ToneSlant, AverMatrix, Average, MackEQ, Hull2, Baxandall, Hull, EQ, Capacitor, Isolator, TapeFat, ResEQ, Lowpass2, Highpass2, Distance, Distance2, Lowpass, Highpass
+Filter: SmoothEQ3, PearEQ, FatEQ, SmoothEQ2, BezEQ2, SmoothEQ, Parametric, Dattorro, Donut, Silken, Stonefire, AngleEQ, AngleFilter, Isolator3, BezEQ, Baxandall2, Pear2, Capacitor2, Distance3, Pear, ResEQ2, SubTight, CStrip2, Weight, Isolator2, Kalman, PrimeFIR, Holt2, Holt, ToneSlant, AverMatrix, Average, MackEQ, Hull2, Baxandall, Hull, EQ, Capacitor, Isolator, TapeFat, ResEQ, Lowpass2, Highpass2, Distance, Distance2, Lowpass, Highpass
 
 Lo-Fi: DeBez, HipCrush, Flutter2, DeRez3, Pockey2, CrunchyGrooveWear, GrooveWear, Pockey, Flutter, DeRez2, BitGlitter, DeRez, TapeBias, ChromeOxide, Cojones, Vibrato, Bite, Deckwrecka, DustBunny
 
@@ -1659,6 +1659,22 @@ So how it works is: if you just generate rand() every sample, that’s white noi
 This is different. I’m not sure it’s better but it’s different, and what it does is: say you’re keeping a list of values that are all random. And you’re replacing them with new random values, and you get your output by adding ’em together. Now, imagine that for each random number you put in, that tells you the next position in the list to replace. That’s DarkNoise. It has a brighter top-end than VoiceOfTheStarship, and runs just as fast, but requires you keep a big pile of numbers around. However, you don’t have to actually add them all every sample. It’s in the code, how to work around that part.
 
 Enjoy the plugin if you like weird noise sources: again, might be sound design, maybe you’d like to gate it along with something? Gate it along with your snare and pick one of the midrangey settings and you might get a nice beefy reinforcement. Cranked way up, it gives a background noise ambience that’s like wind (heard from indoors, or being out in the wind) which can go from almost still, to thousands of miles an hour.
+
+############ Dattorro is the resonant lowpass filter out of Donut.
+
+Here's the filter out of Donut! This started as an experiment to see if I could code an SVF. That's a State Variable filter, and now that the other plugin makers have stopped laughing I'll tell you what it is :)
+
+Turns out a State Variable filter is about the simplest way you can do biquad-filter-like things (read: controllable and flexible) and plugin devs really like this one. That includes heavyweight genius devs like Andy from Cytomic who made The Glue and The Drop (Andy is a 'model every component' guy doing stuff I choose not to do, a rigorous circuit modeler). Dattorro is not that: Dattorro is me taking the concept of the state variable filter and doing Airwindowsy things with it.
+
+For instance, the frequency control's designed to go right up to the high frequency limit of the filter no matter what sample rate it's running under. It does this not by restricting the max frequency, but by altering the logarithm taper of the control so midrange frequencies will always be roughly in the middle of the control's travel. That means you never see exatly what frequency you're using, but neither do you see it on a 303 or x0xb0x and those are great, and this is very much a synth style filter.
+
+There's code for every kind of SVF inside Dattorro's source code, commented out, but the lowpass you get (and the resonant behavior, it has a great reso flavor) is not stock SVF, but airwindowsized. That's because I'm using a sin() function in there (for code simplicity. PurestSaturation would work just as well for this, or TapeHack) but not in the way you'd think. The obvious thing to do is put it on as a post clipper for simply adding distortion.
+
+But you know I'm always interested in anti-saturation, and so the softclip is going on the bandpass output… which is then SUBTRACTED from the lowpass (well, 0.5 of bandpass into sin() and then subtracted, I was working out what sounded best) and that's the filter. It's nearly as simple as the stock SVF but it sounds way, way slicker and that's what's in Donut and now here it is as a standalone filter for you.
+
+The sound is like the filtered-out part gets deeper and more vivid and interesting. Applying inverted saturation is like expansion: it's part of Dubly, and is like inverse Density, and is the buss section of every Console plugin in one way or another. It makes stuff sound farther away. Applying it to a synth filter in this way gives sonic depth and also a curious side-effect: the rolloff actually got shallower, even when it's resonant.
+
+This might be a clue towards something that could make a better Baxandall-style filter. I'll keep experimenting. Enjoy Dattorro :)
 
 ############ DCVoltage is literally a DC control voltage, in a plugin.
 
@@ -5871,7 +5887,7 @@ And then it's topped off by not the latest ClipOnly… but the NEXT ClipOnly. Th
 
 And combining this with the existing ClipOnly2 created a monster.
 
-So that's what's on the end of ToTape9. Output at 0.5 means you're just barely bumping this final clip stage. Boost it and you're hitting the output clip harder, cut it back and it's purely the ToTape section. I would imagine mostly leaving it at 0.5 is what most people will do, but it's yours to experiment with. It produces a 'beyond tape slam' that is shockingly big and deep and loud, it applies its work only when clipping is actively happening, it's all within a very tiny amplitude window so it stays clean on most everything, and it gracefully handles Gibb effect overslew (intersample clipping) without ever applying upsampling or downsampling, so the sound is aggressive and raw the way I like my tape effects to be.
+So that's what's on the end of ToTape9. Output at 0.5 means you're just barely bumping this final clip stage. Boost it and you're hitting the output clip harder, cut it back and it's purely the ToTape section. I would imagine mostly leaving it at 0.5 is what most people will do, but it's yours to experiment with. It produces a 'beyond tape slam' that is shockingly big and deep and loud, it applies its work only when clipping is actively happening, it's all within a very tiny amplitude window so it stays clean on most everything, and it gracefully handles Gibbs effect overslew (intersample clipping) without ever applying upsampling or downsampling, so the sound is aggressive and raw the way I like my tape effects to be.
 
 Try ToTape9. It's the most intensely tapey plugin I've ever done, with new abilities like the ability to soak up highs like the real thing. It's got all the little details you could ask of a no-compromises real tape model, but adapted to musical purposes so you can think 'tilt towards more brightness' rather than 'should I go with a 355 nanoWebers per meter calibration'. And it's got the most killer output clip stage I've ever made, just to let you use it as a kind of loudness maximizer right out of the box.
 
