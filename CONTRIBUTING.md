@@ -3,8 +3,11 @@ Hi, thank you for your interest in this project!
 ## Tasks
 
 If you want to help, two important tasks are:
-1. Build the airwindows_perf plugins for your platform and share them here;
+1. Port the plugins to JUCE.
+1. Build the plugins for your platform and share them here*;
 2. Modernize the C++ code with a focus on performance.
+
+*Distributing vst2 plugins is illegal unless you have a contract with Steinberg.
 
 todo(Gaétan) Musicians might want to build the plugins themselves, so write or redirect to a clear guide to build on all platforms.
 
