@@ -1,7 +1,8 @@
 /* ========================================
  *  BitDualPan - BitDualPan.h
  *  Copyright (c) airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __BitDualPan_H
 #include "BitDualPan.h"

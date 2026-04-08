@@ -1,7 +1,8 @@
 /* ========================================
  *  Slew2 - Slew2.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __Slew2_H
 #include "Slew2.h"

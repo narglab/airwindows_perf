@@ -1,7 +1,8 @@
 /* ========================================
  *  Monitoring3 - Monitoring3.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __Monitoring3_H
 #include "Monitoring3.h"

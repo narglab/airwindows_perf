@@ -2,7 +2,8 @@
  *  Slew - Slew.h
  *  Created 8/12/11 by SPIAdmin 
  *  Copyright (c) 2011 __MyCompanyName__, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __Slew_H
 #include "Slew.h"

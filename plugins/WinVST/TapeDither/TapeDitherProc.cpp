@@ -1,7 +1,8 @@
 /* ========================================
  *  TapeDither - TapeDither.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __TapeDither_H
 #include "TapeDither.h"

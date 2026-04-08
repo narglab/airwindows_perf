@@ -1,7 +1,8 @@
 /* ========================================
  *  Channel4 - Channel4.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __Channel4_H
 #include "Channel4.h"

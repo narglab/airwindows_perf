@@ -1,7 +1,8 @@
 /* ========================================
  *  DCVoltage - DCVoltage.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __DCVoltage_H
 #include "DCVoltage.h"

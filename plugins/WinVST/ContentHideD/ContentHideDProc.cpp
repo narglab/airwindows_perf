@@ -1,7 +1,8 @@
 /* ========================================
  *  ContentHideD - ContentHideD.h
  *  Copyright (c) airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __ContentHideD_H
 #include "ContentHideD.h"

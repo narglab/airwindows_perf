@@ -1,7 +1,8 @@
 /* ========================================
  *  ClipOnly3 - ClipOnly3.h
  *  Copyright (c) airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __ClipOnly3_H
 #include "ClipOnly3.h"

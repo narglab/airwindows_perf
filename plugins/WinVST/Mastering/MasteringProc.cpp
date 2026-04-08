@@ -1,7 +1,8 @@
 /* ========================================
  *  Mastering - Mastering.h
  *  Copyright (c) airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __Mastering_H
 #include "Mastering.h"

@@ -1,7 +1,8 @@
 /* ========================================
  *  EdIsDim - EdIsDim.h
  *  Copyright (c) 2016 airwindows, Airwindows uses the MIT license
- * ======================================== */
+ *  Copyright (c) 2026 narglab
+*/
 
 #ifndef __EdIsDim_H
 #include "EdIsDim.h"
