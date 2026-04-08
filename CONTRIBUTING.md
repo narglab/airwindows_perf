@@ -33,6 +33,8 @@ Please use a linter and formatter.
 
 ## What are we measuring?
 
+*For people new to audio programming*
+
 In a computer, audio is typically represented as a stream of floating point numbers between -1.0 and 1.0.
 These numbers approximate the continuous wave that hits your eardrums when speakers vibrate.
 To represent a sinewave of frequency f, you need 2f points.
