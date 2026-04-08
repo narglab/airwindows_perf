@@ -10,6 +10,7 @@ If you want to help, two important tasks are:
 *Distributing vst2 plugins is illegal unless you have a contract with Steinberg.
 
 todo(Gaétan) Musicians might want to build the plugins themselves, so write or redirect to a clear guide to build on all platforms.
+todo(Gaétan) Explain how to port vst2 to JUCE vst3.
 
 ## Objectives
 
