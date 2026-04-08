@@ -163,14 +163,8 @@ void ClipOnly3::processDoubleReplacing(double **inputs, double **outputs, VstInt
 		if (inputSampleR > postclip) inputSampleR = postclip; if (inputSampleR < -postclip) inputSampleR = -postclip;
 		//end ClipOnly3 as a little, compressed chunk that can be dropped into code
 		
-		//begin 64 bit stereo floating point dither
-		//int expon; frexp((double)inputSampleL, &expon);
 		fpdL ^= fpdL << 13; fpdL ^= fpdL >> 17; fpdL ^= fpdL << 5;
-		//inputSampleL += ((double(fpdL)-uint32_t(0x7fffffff)) * 1.1e-44l * pow(2,expon+62));
-		//frexp((double)inputSampleR, &expon);
 		fpdR ^= fpdR << 13; fpdR ^= fpdR >> 17; fpdR ^= fpdR << 5;
-		//inputSampleR += ((double(fpdR)-uint32_t(0x7fffffff)) * 1.1e-44l * pow(2,expon+62));
-		//end 64 bit stereo floating point dither
 		
 		*out1 = inputSampleL;
 		*out2 = inputSampleR;

@@ -26,21 +26,6 @@ void PurestConsole3Channel::processReplacing(float **inputs, float **outputs, Vs
 		inputSampleR += ((pow(inputSampleR,5)/128.0) + (pow(inputSampleR,9)/262144.0)) - ((pow(inputSampleR,3)/8.0) + (pow(inputSampleR,7)/4096.0));
 		//crude sine. Note that because modern processors love math more than extra variables, this is optimized
 
-		//begin 32 bit stereo floating point dither
-		int expon;
-		constexpr uint32_t magic_number_dither = uint32_t(0x7fffffff);
-		constexpr uint64_t two_pow_62 = 1ULL << 62;
-		std::frexp((float) inputSampleL, &expon);
-		fpdL ^= fpdL << 13; fpdL ^= fpdL >> 17; fpdL ^= fpdL << 5;
-		uint64_t power_of_twoL = two_pow_62 << expon;
-		double dither_factorL = 5.5e-36l * power_of_twoL;
-		inputSampleL += ((double(fpdL) - magic_number_dither) * dither_factorL);
-		std::frexp((float) inputSampleR, &expon);
-		fpdR ^= fpdR << 13; fpdR ^= fpdR >> 17; fpdR ^= fpdR << 5;
-		uint64_t power_of_twoR = two_pow_62 << expon;
-		double dither_factorR = 5.5e-36l * power_of_twoR;
-		inputSampleR += ((double(fpdR) - magic_number_dither) * dither_factorR);
-		//end 32 bit stereo floating point dither
 
 		*out1 = static_cast<float>(inputSampleL);
 		*out2 = static_cast<float>(inputSampleR);
@@ -73,14 +58,8 @@ void PurestConsole3Channel::processDoubleReplacing(double **inputs, double **out
 		inputSampleR += ((pow(inputSampleR,5)/128.0) + (pow(inputSampleR,9)/262144.0)) - ((pow(inputSampleR,3)/8.0) + (pow(inputSampleR,7)/4096.0));
 		//crude sine. Note that because modern processors love math more than extra variables, this is optimized
 		
-		//begin 64 bit stereo floating point dither
-		//int expon; frexp((double)inputSampleL, &expon);
 		fpdL ^= fpdL << 13; fpdL ^= fpdL >> 17; fpdL ^= fpdL << 5;
-		//inputSampleL += ((double(fpdL)-uint32_t(0x7fffffff)) * 1.1e-44l * pow(2,expon+62));
-		//frexp((double)inputSampleR, &expon);
 		fpdR ^= fpdR << 13; fpdR ^= fpdR >> 17; fpdR ^= fpdR << 5;
-		//inputSampleR += ((double(fpdR)-uint32_t(0x7fffffff)) * 1.1e-44l * pow(2,expon+62));
-		//end 64 bit stereo floating point dither
 		
 		*out1 = inputSampleL;
 		*out2 = inputSampleR;
