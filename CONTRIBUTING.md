@@ -2,15 +2,12 @@ Hi, thank you for your interest in this project!
 
 ## Tasks
 
-If you want to help, two important tasks are:
-1. Port the plugins to JUCE.
-1. Build the plugins for your platform and share them here*;
-2. Modernize the C++ code with a focus on performance.
+1. Port a plugin to JUCE and build it for your platform*.
+2. Translate a section of code to efficient modern C++.
 
-*Distributing vst2 plugins is illegal unless you have a contract with Steinberg.
+* Distributing vst2 plugins is illegal unless you have a contract with Steinberg.
 
 todo(Gaétan) Musicians might want to build the plugins themselves, so write or redirect to a clear guide to build on all platforms.
-todo(Gaétan) Explain how to port vst2 to JUCE vst3.
 
 ## Objectives
 
@@ -18,7 +15,6 @@ The main goal here is to (re-)distribute quality free plugins that run fast even
 The end users are anyone working with audio: musicians, podcasters, ASMRtists, editors, etc.
 
 Optimally, your code should produce the same result as the original and fill the buffer more quickly.
-CPU speed is the priority.
 
 ## Avoid
 
@@ -34,3 +30,30 @@ This is efficient for both designers and end users.
 ## Coding conventions
 
 Please use a linter and formatter.
+
+## What are we measuring?
+
+In a computer, audio is typically represented as a stream of floating point numbers between -1.0 and 1.0.
+These numbers approximate the continuous wave that hits your eardrums when speakers vibrate.
+To represent a sinewave of frequency f, you need 2f points.
+Human beings hear up to about 20 kHz; the lowest samplerate in most audio software is 44.1 kHz, safely above 2*20 = 40kHz.
+
+Audio software chunk this data into buffers.
+This is done to avoid recomputing expensive operations every sample and leverage vectorized operations.
+Let buffer_size = 512.
+Then instead of recomputing expensive_function() 44100 times per second per channel,
+you recompute about 86 times.
+
+That being said, what audio devs measure is the relative time that the CPU takes to fill the buffer.
+In general, perf% = time_compute / time_available
+
+For a buffer size of 512 at 44100 Hz, time_available = 512 / 44100 = 11.6 milliseconds.
+What we measure is the fraction of these 11.6 ms that the computation takes to complete.
+
+This fraction can be greater than 100%.
+That means the CPU did not compute fast enough, and you get silence.
+This is called an overload.
+But the CPU returns its results quickly after, which means brief intermissions of silence,
+and you get crackling noise.
+
+Note that we're not measuring total CPU usage.
