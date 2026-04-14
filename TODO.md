@@ -1,7 +1,7 @@
 # Public TODO-list
 
 ## juce
-Make a JUCE template for GUI-less plugins, separate folder.
+Make a JUCE template; prototype with DitherBox for now.
 Port each plugin to JUCE as is.
 
 ## versioning
@@ -31,6 +31,8 @@ Easier to begin with: copy/paste a template with N knobs to start a plugin with 
 Horner's method for polynomial
 Range reduction
 Vectorization (see how to detect architecture; can assume SSE for now)
+Optional 32bit/64bit processing (sync all instances).
+Optional dithering.
 
 ## profiling + graphs
 I should make a program that measures CPU_time%. (for DAW-like buffers: up to 2048)
